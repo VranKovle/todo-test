@@ -8,6 +8,7 @@ use App\Models\tugas;
 class Tambahtugass extends Component
 {
     public $nama;
+    public $hari;
     public $statusnya;
     public $bukaform = false;
     public $bukaupdate = false;
@@ -24,6 +25,7 @@ class Tambahtugass extends Component
     protected $rules = [
         'nama' => 'required|min:3|max:255',
         'statusnya' => 'required|in:selesai,belum selesai',
+        'hari' => 'required|min:3|max:255',
     ];
 
     protected $messages = [
@@ -47,9 +49,10 @@ class Tambahtugass extends Component
         $this->validate();
         $simpan = new tugas();
         $simpan->namatugas = $this->nama;
+        $simpan->harinya = $this->hari;
         $simpan->status = $this->statusnya;
         $simpan->save();
-        $this->reset(['nama', 'statusnya', 'bukaform']);
+        $this->reset(['nama', 'statusnya','hari', 'bukaform']);
         $this->render();
     }
 

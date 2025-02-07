@@ -10,6 +10,17 @@
             <form wire:submit.prevent="simpan" class="p-4 md:p-5 space-y-4">
                 <label for="">Nama Tugas :</label>
                 <input type="text" class="w-full rounded-full" wire:model='nama'>
+                <label for="">Hari :</label>
+                <select class="rounded-full w-full" wire:model="hari">
+                    <option value="">Pilih Hari</option>
+                    <option value="senin">Senin</option>
+                    <option value="selasa">Selasa</option>
+                    <option value="rabu">Rabu</option>
+                    <option value="kamis">Kamis</option>
+                    <option value="jumat">Jumat</option>
+                    <option value="sabtu">Sabtu</option>
+                    <option value="minggu">Minggu</option>
+                </select>
                 <div>
                     @error($nama)
                         {{ $message }}
@@ -37,7 +48,8 @@
             <table class="w-full border-2 border-black">
                 <thead class="text-white bg-black text-center">
                     <tr>
-                        <td class="py-3 w-2/4">Tugas</td>
+                        <td class="py-3 w-1">Hari</td>
+                        <td class="w-1/4">Tugas</td>
                         <td class="w-1/4">Status</td>
                         <td>Action</td>
                     </tr>
@@ -45,6 +57,7 @@
                 <tbody class="text-center">
                     @foreach ($tugas as $tugas)
                         <tr>
+                            <td class="py-3 capitalize">{{ $tugas->harinya }}</td>
                             <td class="py-3 capitalize">{{ $tugas->namatugas }}</td>
                             <td class="uppercase">{{ $tugas->status }}
                             </td>
